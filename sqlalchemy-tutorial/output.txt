@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 6487, in visit_create_table
+    processed = self.process(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 912, in process
+    return obj._compiler_dispatch(self, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/visitors.py", line 143, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 6518, in visit_create_column
+    text = self.get_column_specification(column, first_pk=first_pk)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/dialects/mysql/base.py", line 1809, in get_column_specification
+    self.dialect.type_compiler_instance.process(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 957, in process
+    return type_._compiler_dispatch(self, **kw)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/visitors.py", line 143, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 7072, in visit_string
+    return self.visit_VARCHAR(type_, **kw)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/dialects/mysql/base.py", line 2305, in visit_VARCHAR
+    raise exc.CompileError(
+sqlalchemy.exc.CompileError: VARCHAR requires a length on dialect mysql
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "./inserts.py", line 12, in <module>
+    Base.metadata.create_all(engine)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/schema.py", line 5828, in create_all
+    bind._run_ddl_visitor(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/engine/base.py", line 3243, in _run_ddl_visitor
+    conn._run_ddl_visitor(visitorcallable, element, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/engine/base.py", line 2447, in _run_ddl_visitor
+    visitorcallable(self.dialect, self, **kwargs).traverse_single(element)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/visitors.py", line 671, in traverse_single
+    return meth(obj, **kw)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/ddl.py", line 919, in visit_metadata
+    self.traverse_single(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/visitors.py", line 671, in traverse_single
+    return meth(obj, **kw)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/ddl.py", line 952, in visit_table
+    CreateTable(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/ddl.py", line 315, in _invoke_with
+    return bind.execute(self)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/ddl.py", line 181, in _execute_on_connection
+    return connection._execute_ddl(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/engine/base.py", line 1525, in _execute_ddl
+    compiled = ddl.compile(
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/elements.py", line 308, in compile
+    return self._compiler(dialect, **kw)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/ddl.py", line 69, in _compiler
+    return dialect.ddl_compiler(dialect, self, **kw)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 867, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 912, in process
+    return obj._compiler_dispatch(self, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/visitors.py", line 143, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+  File "/usr/local/lib/python3.8/dist-packages/sqlalchemy/sql/compiler.py", line 6497, in visit_create_table
+    raise exc.CompileError(
+sqlalchemy.exc.CompileError: (in table 'actors', column 'name'): VARCHAR requires a length on dialect mysql
